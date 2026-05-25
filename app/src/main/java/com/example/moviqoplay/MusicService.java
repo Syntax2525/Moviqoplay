@@ -39,6 +39,7 @@ public class MusicService extends Service implements MediaPlayer.OnCompletionLis
     public static final String ACTION_NEXT = "com.example.moviqoplay.action.NEXT";
     public static final String ACTION_PREVIOUS = "com.example.moviqoplay.action.PREVIOUS";
     public static final String ACTION_SEEK = "com.example.moviqoplay.action.SEEK";
+    public static final String ACTION_STOP = "com.example.moviqoplay.action.STOP";
     public static final String ACTION_STATE = "com.example.moviqoplay.action.STATE";
     public static final String EXTRA_SONGS = "extra_songs";
     public static final String EXTRA_INDEX = "extra_index";
@@ -100,6 +101,10 @@ public class MusicService extends Service implements MediaPlayer.OnCompletionLis
             previous();
         } else if (ACTION_SEEK.equals(action)) {
             seekTo(intent.getIntExtra(EXTRA_POSITION, 0));
+        } else if (ACTION_STOP.equals(action)) {
+            releasePlayer();
+            stopForeground(STOP_FOREGROUND_REMOVE);
+            stopSelf();
         }
         return START_STICKY;
     }
@@ -295,6 +300,11 @@ public class MusicService extends Service implements MediaPlayer.OnCompletionLis
                 "Next",
                 servicePendingIntent(ACTION_NEXT, 3)
         );
+        NotificationCompat.Action stop = new NotificationCompat.Action(
+                R.drawable.ic_placeholder,
+                "Stop",
+                servicePendingIntent(ACTION_STOP, 4)
+        );
 
         return new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_placeholder)
@@ -307,6 +317,7 @@ public class MusicService extends Service implements MediaPlayer.OnCompletionLis
                 .addAction(previous)
                 .addAction(playPause)
                 .addAction(next)
+                .addAction(stop)
                 .setStyle(new androidx.media.app.NotificationCompat.MediaStyle()
                         .setMediaSession(mediaSession.getSessionToken())
                         .setShowActionsInCompactView(0, 1, 2))

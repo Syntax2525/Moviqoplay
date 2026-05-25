@@ -84,28 +84,65 @@
             android:background="@drawable/bg_glass_panel"
             android:padding="@dimen/space_md">
 
-            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
-                <TextView style="@style/Text.Body" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:textColor="@color/text_primary" android:text="AMOLED Dark" />
-                <com.google.android.material.materialswitch.MaterialSwitch
-                    android:id="@+id/switch_amoled"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+            <RadioGroup
+                android:id="@+id/group_theme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:animateLayoutChanges="true"
+                android:orientation="vertical">
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/theme_dark"
+                    style="@style/ThemeChoiceRadio"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:background="@drawable/bg_theme_choice"
+                    android:buttonTint="@color/neon_blue"
                     android:checked="true"
-                    app:thumbTint="@color/neon_blue" />
-            </LinearLayout>
+                    android:text="@string/theme_dark_mode"
+                    android:textColor="@color/text_primary" />
 
-            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/space_sm" android:orientation="horizontal" android:gravity="center_vertical">
-                <TextView style="@style/Text.Body" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:textColor="@color/text_primary" android:text="Glassmorphism effects" />
-                <com.google.android.material.materialswitch.MaterialSwitch
-                    android:id="@+id/switch_glass"
-                    android:layout_width="wrap_content"
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/theme_light"
+                    style="@style/ThemeChoiceRadio"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="@dimen/space_sm"
+                    android:background="@drawable/bg_theme_choice"
+                    android:buttonTint="@color/neon_blue"
+                    android:text="@string/theme_light_mode"
+                    android:textColor="@color/text_primary" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/theme_system"
+                    style="@style/ThemeChoiceRadio"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="@dimen/space_sm"
+                    android:background="@drawable/bg_theme_choice"
+                    android:buttonTint="@color/neon_blue"
+                    android:text="@string/theme_system_default"
+                    android:textColor="@color/text_primary" />
+            </RadioGroup>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_sm"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/Text.Caption"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:checked="true" />
-            </LinearLayout>
+                    android:layout_weight="1"
+                    android:text="@string/theme_applies_globally" />
 
-            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/space_sm" android:orientation="horizontal" android:gravity="center_vertical">
-                <TextView style="@style/Text.Body" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:textColor="@color/text_primary" android:text="Accent color" />
-                <View android:layout_width="24dp" android:layout_height="24dp" android:background="@drawable/bg_circle_neon" />
+                <View
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:background="@drawable/bg_circle_neon" />
             </LinearLayout>
         </LinearLayout>
 

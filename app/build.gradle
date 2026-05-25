@@ -37,6 +37,9 @@ dependencies {
     implementation libs.recyclerview
     implementation libs.viewpager2
     implementation libs.media
+    implementation libs.media3.exoplayer
+    implementation libs.media3.ui
+    implementation libs.glide
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core

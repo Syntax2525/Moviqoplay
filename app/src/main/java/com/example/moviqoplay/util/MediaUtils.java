@@ -22,54 +22,7 @@ public final class MediaUtils {
     }
 
     public static List<Song> scanLocalSongs(Context context) {
-        List<Song> songs = new ArrayList<>();
-        ContentResolver resolver = context.getContentResolver();
-        Uri collection = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-        String[] projection = {
-                MediaStore.Audio.Media._ID,
-                MediaStore.Audio.Media.TITLE,
-                MediaStore.Audio.Media.ARTIST,
-                MediaStore.Audio.Media.ALBUM,
-                MediaStore.Audio.Media.DURATION,
-                MediaStore.Audio.Media.DATA,
-                MediaStore.Audio.Media.ALBUM_ID
-        };
-        String selection = MediaStore.Audio.Media.IS_MUSIC + "!=0";
-        String sortOrder = MediaStore.Audio.Media.DATE_ADDED + " DESC";
-
-        try (Cursor cursor = resolver.query(collection, projection, selection, null, sortOrder)) {
-            if (cursor == null) {
-                return songs;
-            }
-            int idColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media._ID);
-            int titleColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.TITLE);
-            int artistColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ARTIST);
-            int albumColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM);
-            int durationColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DURATION);
-            int pathColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA);
-            int albumIdColumn = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM_ID);
-
-            while (cursor.moveToNext()) {
-                long id = cursor.getLong(idColumn);
-                String path = cursor.getString(pathColumn);
-                if (!isSupportedAudio(path)) {
-                    continue;
-                }
-                long albumId = cursor.getLong(albumIdColumn);
-                songs.add(new Song(
-                        id,
-                        safeText(cursor.getString(titleColumn), titleFromPath(path)),
-                        safeText(cursor.getString(artistColumn), UNKNOWN_ARTIST),
-                        safeText(cursor.getString(albumColumn), UNKNOWN_ALBUM),
-                        cursor.getLong(durationColumn),
-                        path,
-                        albumArtUri(albumId)
-                ));
-            }
-        } catch (RuntimeException ignored) {
-            return songs;
-        }
-        return songs;
+        return MediaScannerHelper.scanSongs(context);
     }
 
     public static Song readMetadataFromPath(String path) {
@@ -117,6 +70,18 @@ public final class MediaUtils {
                 || lower.endsWith(".m4a")
                 || lower.endsWith(".aac")
                 || lower.endsWith(".flac");
+    }
+
+    public static boolean isSupportedVideo(String path) {
+        if (TextUtils.isEmpty(path)) {
+            return false;
+        }
+        String lower = path.toLowerCase(Locale.US);
+        return lower.endsWith(".mp4")
+                || lower.endsWith(".mkv")
+                || lower.endsWith(".webm")
+                || lower.endsWith(".3gp")
+                || lower.endsWith(".mov");
     }
 
     private static String albumArtUri(long albumId) {

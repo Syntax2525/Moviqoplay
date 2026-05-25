@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Moviqoplay - Futuristic AMOLED Material 3 Theme -->
-    <style name="Theme.Movoqoplay" parent="Theme.Material3.Dark.NoActionBar">
+    <style name="Theme.Movoqoplay" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/neon_blue</item>
-        <item name="colorOnPrimary">@color/black_amoled</item>
+        <item name="colorOnPrimary">@color/black_elevated</item>
         <item name="colorPrimaryContainer">@color/electric_purple</item>
         <item name="colorOnPrimaryContainer">@color/text_primary</item>
 
@@ -20,9 +19,12 @@
         <item name="colorOnSurface">@color/text_primary</item>
         <item name="colorOnSurfaceVariant">@color/text_secondary</item>
 
+        <item name="android:windowSplashScreenBackground">@color/black_amoled</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@color/black_amoled</item>
-        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:forceDarkAllowed">false</item>
 
         <item name="android:fontFamily">sans-serif</item>
     </style>
@@ -39,7 +41,7 @@
         <item name="android:textColor">@color/text_primary</item>
         <item name="android:textSize">@dimen/text_display</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:letterSpacing">0</item>
     </style>
 
     <style name="Text.Headline" parent="TextAppearance.Material3.HeadlineSmall">
@@ -76,7 +78,14 @@
     <style name="NeonButton" parent="Widget.Material3.Button">
         <item name="backgroundTint">@color/neon_blue</item>
         <item name="cornerRadius">@dimen/radius_pill</item>
-        <item name="android:textColor">@color/black_amoled</item>
+        <item name="android:textColor">@color/black_elevated</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ThemeChoiceRadio" parent="Widget.Material3.CompoundButton.RadioButton">
+        <item name="android:paddingStart">@dimen/space_md</item>
+        <item name="android:paddingEnd">@dimen/space_md</item>
+        <item name="android:gravity">center_vertical</item>
         <item name="android:textStyle">bold</item>
     </style>
 </resources>

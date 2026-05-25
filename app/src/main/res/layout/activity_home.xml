@@ -289,9 +289,33 @@
                 android:layout_marginTop="@dimen/space_sm"
                 android:paddingHorizontal="@dimen/space_lg"
                 android:nestedScrollingEnabled="false"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/lbl_recommended"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/lbl_local_videos"
+                style="@style/Text.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_lg"
+                android:layout_marginTop="@dimen/space_lg"
+                android:text="@string/local_video_library"
+                app:layout_constraintTop_toBottomOf="@id/rv_recommended"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_local_videos"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_sm"
+                android:nestedScrollingEnabled="false"
+                android:paddingHorizontal="@dimen/space_sm"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="2"
-                app:layout_constraintTop_toBottomOf="@id/lbl_recommended"
+                app:layout_constraintTop_toBottomOf="@id/lbl_local_videos"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
