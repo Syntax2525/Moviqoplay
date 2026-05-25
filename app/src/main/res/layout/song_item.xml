@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardSong"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/space_sm"
+    app:cardBackgroundColor="@color/glass_overlay"
+    app:cardCornerRadius="@dimen/radius_lg"
+    app:cardElevation="@dimen/elev_low"
+    app:strokeColor="@color/glass_stroke"
+    app:strokeWidth="@dimen/stroke_glass">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="76dp"
+        android:padding="@dimen/space_sm">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imgSongArt"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:contentDescription="@string/album_art"
+            android:scaleType="centerCrop"
+            android:src="@drawable/sample_album"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Medium" />
+
+        <TextView
+            android:id="@+id/txtSongTitle"
+            style="@style/Text.Body"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_sm"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/text_primary"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/txtSongDuration"
+            app:layout_constraintStart_toEndOf="@id/imgSongArt"
+            app:layout_constraintTop_toTopOf="@id/imgSongArt" />
+
+        <TextView
+            android:id="@+id/txtSongArtist"
+            style="@style/Text.Caption"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_sm"
+            android:ellipsize="end"
+            android:maxLines="1"
+            app:layout_constraintBottom_toBottomOf="@id/imgSongArt"
+            app:layout_constraintEnd_toStartOf="@id/txtSongDuration"
+            app:layout_constraintStart_toEndOf="@id/imgSongArt" />
+
+        <TextView
+            android:id="@+id/txtSongDuration"
+            style="@style/Text.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_sm"
+            app:layout_constraintBottom_toBottomOf="@id/imgSongArt"
+            app:layout_constraintEnd_toStartOf="@id/viewPlayingIndicator"
+            app:layout_constraintTop_toTopOf="@id/imgSongArt" />
+
+        <View
+            android:id="@+id/viewPlayingIndicator"
+            android:layout_width="6dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="@dimen/space_sm"
+            android:background="@drawable/bg_neon_gradient"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@id/imgSongArt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/imgSongArt" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

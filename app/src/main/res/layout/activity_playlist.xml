@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    activity_playlist.xml — Playlist Management
+    Playlist cards · Create FAB · Drag-and-drop ordering (ItemTouchHelper)
+    · Collaborative indicators
+-->
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient_main"
+    android:fitsSystemWindows="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Header -->
+        <TextView
+            android:id="@+id/lbl_playlists"
+            style="@style/Text.Display"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_lg"
+            android:layout_marginTop="@dimen/space_xl"
+            android:text="@string/your_playlists"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_playlist_count"
+            style="@style/Text.Body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_lg"
+            android:text="24 playlists · 1,284 tracks"
+            app:layout_constraintTop_toBottomOf="@id/lbl_playlists"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <!-- Filter pills -->
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chips_filter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/space_lg"
+            android:layout_marginTop="@dimen/space_md"
+            app:singleLine="true"
+            app:singleSelection="true"
+            app:layout_constraintTop_toBottomOf="@id/txt_playlist_count"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_all"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="All"
+                android:checked="true" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_mine"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Created by me" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_collab"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/collaborative" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_downloaded"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Downloaded" />
+        </com.google.android.material.chip.ChipGroup>
+
+        <!-- Playlist grid w/ drag-and-drop -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_playlists"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/space_md"
+            android:paddingHorizontal="@dimen/space_md"
+            android:paddingBottom="120dp"
+            android:clipToPadding="false"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="2"
+            app:layout_constraintTop_toBottomOf="@id/chips_filter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Floating Create Playlist FAB with neon gradient -->
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fab_create_playlist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/space_lg"
+        android:text="@string/create_playlist"
+        android:textColor="@color/black_amoled"
+        app:icon="@drawable/ic_placeholder"
+        app:iconTint="@color/black_amoled"
+        app:backgroundTint="@color/neon_blue"
+        app:elevation="@dimen/elev_high" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

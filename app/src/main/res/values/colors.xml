@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Movoqoplay - Futuristic AMOLED color palette -->
+<resources>
+    <!-- Core AMOLED surfaces -->
+    <color name="black_amoled">#050505</color>
+    <color name="black_surface">#0A0A0F</color>
+    <color name="black_elevated">#101018</color>
+    <color name="glass_overlay">#1A1F2E</color>
+    <color name="glass_stroke">#2A2F45</color>
+
+    <!-- Neon accents -->
+    <color name="neon_blue">#00C2FF</color>
+    <color name="neon_blue_dim">#0091CC</color>
+    <color name="electric_purple">#8B5CF6</color>
+    <color name="electric_purple_dim">#6D28D9</color>
+    <color name="cyan_accent">#22D3EE</color>
+    <color name="magenta_glow">#EC4899</color>
+
+    <!-- Typography -->
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#B8BCC8</color>
+    <color name="text_tertiary">#6B7280</color>
+
+    <!-- Glassmorphism overlays (with alpha) -->
+    <color name="glass_white_08">#14FFFFFF</color>
+    <color name="glass_white_12">#1FFFFFFF</color>
+    <color name="glass_white_20">#33FFFFFF</color>
+    <color name="glass_black_60">#99000000</color>
+    <color name="glass_black_80">#CC000000</color>
+
+    <!-- Status -->
+    <color name="success_green">#10F2A6</color>
+    <color name="warning_amber">#FBBF24</color>
+    <color name="error_red">#EF4444</color>
+    <color name="premium_gold">#F59E0B</color>
+
+    <!-- Gradient stops -->
+    <color name="gradient_start">#0F0C29</color>
+    <color name="gradient_mid">#302B63</color>
+    <color name="gradient_end">#24243E</color>
+</resources>

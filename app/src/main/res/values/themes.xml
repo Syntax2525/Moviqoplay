@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Moviqoplay - Futuristic AMOLED Material 3 Theme -->
+    <style name="Theme.Movoqoplay" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">@color/neon_blue</item>
+        <item name="colorOnPrimary">@color/black_amoled</item>
+        <item name="colorPrimaryContainer">@color/electric_purple</item>
+        <item name="colorOnPrimaryContainer">@color/text_primary</item>
+
+        <item name="colorSecondary">@color/electric_purple</item>
+        <item name="colorOnSecondary">@color/text_primary</item>
+
+        <item name="colorTertiary">@color/cyan_accent</item>
+        <item name="colorOnTertiary">@color/black_amoled</item>
+
+        <item name="android:colorBackground">@color/black_amoled</item>
+        <item name="colorOnBackground">@color/text_primary</item>
+        <item name="colorSurface">@color/black_surface</item>
+        <item name="colorSurfaceVariant">@color/glass_overlay</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+        <item name="colorOnSurfaceVariant">@color/text_secondary</item>
+
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@color/black_amoled</item>
+        <item name="android:windowLightStatusBar">false</item>
+
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <!-- Fullscreen cinematic theme for video player -->
+    <style name="Theme.Movoqoplay.Fullscreen" parent="Theme.Movoqoplay">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+
+    <!-- Text styles -->
+    <style name="Text.Display" parent="TextAppearance.Material3.DisplaySmall">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">@dimen/text_display</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">-0.02</item>
+    </style>
+
+    <style name="Text.Headline" parent="TextAppearance.Material3.HeadlineSmall">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">@dimen/text_headline</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Text.Title" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">@dimen/text_title</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Text.Body" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:textSize">@dimen/text_body</item>
+    </style>
+
+    <style name="Text.Caption" parent="TextAppearance.Material3.LabelSmall">
+        <item name="android:textColor">@color/text_tertiary</item>
+        <item name="android:textSize">@dimen/text_caption</item>
+    </style>
+
+    <!-- Glass card style -->
+    <style name="GlassCard" parent="Widget.Material3.CardView.Filled">
+        <item name="cardBackgroundColor">@color/glass_overlay</item>
+        <item name="cardCornerRadius">@dimen/radius_lg</item>
+        <item name="cardElevation">@dimen/elev_md</item>
+        <item name="strokeColor">@color/glass_stroke</item>
+        <item name="strokeWidth">@dimen/stroke_glass</item>
+    </style>
+
+    <style name="NeonButton" parent="Widget.Material3.Button">
+        <item name="backgroundTint">@color/neon_blue</item>
+        <item name="cornerRadius">@dimen/radius_pill</item>
+        <item name="android:textColor">@color/black_amoled</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+</resources>

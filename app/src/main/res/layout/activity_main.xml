@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient_main"
+    android:padding="@dimen/space_lg"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/txtMainTitle"
+        style="@style/Text.Display"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/main_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtMainSubtitle"
+        style="@style/Text.Body"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_xs"
+        android:text="@string/main_subtitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtMainTitle" />
+
+    <LinearLayout
+        android:id="@+id/mainActions"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_xl"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtMainSubtitle">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnOpenHome"
+            style="@style/NeonButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/open_home" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnOpenPlayer"
+            style="@style/NeonButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_sm"
+            android:text="@string/open_player" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnOpenVideo"
+            style="@style/NeonButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_sm"
+            android:text="@string/open_video" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnOpenPlaylist"
+            style="@style/NeonButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_sm"
+            android:text="@string/open_playlist" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnOpenEqualizer"
+            style="@style/NeonButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_sm"
+            android:text="@string/open_equalizer" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

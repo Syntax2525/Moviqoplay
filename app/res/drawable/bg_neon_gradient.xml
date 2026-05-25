@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Neon blue → purple → cyan gradient for hero CTAs and progress bars -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:type="linear"
+        android:angle="45"
+        android:startColor="@color/neon_blue"
+        android:centerColor="@color/electric_purple"
+        android:endColor="@color/cyan_accent" />
+    <corners android:radius="@dimen/radius_pill" />
+</shape>

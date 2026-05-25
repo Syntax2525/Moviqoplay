@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Spacing scale -->
+    <dimen name="space_xxs">4dp</dimen>
+    <dimen name="space_xs">8dp</dimen>
+    <dimen name="space_sm">12dp</dimen>
+    <dimen name="space_md">16dp</dimen>
+    <dimen name="space_lg">24dp</dimen>
+    <dimen name="space_xl">32dp</dimen>
+    <dimen name="space_xxl">48dp</dimen>
+
+    <!-- Corner radii -->
+    <dimen name="radius_sm">8dp</dimen>
+    <dimen name="radius_md">16dp</dimen>
+    <dimen name="radius_lg">24dp</dimen>
+    <dimen name="radius_xl">32dp</dimen>
+    <dimen name="radius_pill">100dp</dimen>
+
+    <!-- Typography -->
+    <dimen name="text_caption">12sp</dimen>
+    <dimen name="text_body">14sp</dimen>
+    <dimen name="text_body_lg">16sp</dimen>
+    <dimen name="text_title">20sp</dimen>
+    <dimen name="text_headline">28sp</dimen>
+    <dimen name="text_display">36sp</dimen>
+
+    <!-- Elevation -->
+    <dimen name="elev_low">2dp</dimen>
+    <dimen name="elev_md">8dp</dimen>
+    <dimen name="elev_high">16dp</dimen>
+
+    <!-- Component sizes -->
+    <dimen name="album_card_size">160dp</dimen>
+    <dimen name="album_card_lg">200dp</dimen>
+    <dimen name="mini_player_height">64dp</dimen>
+    <dimen name="bottom_nav_height">72dp</dimen>
+    <dimen name="control_btn_sm">44dp</dimen>
+    <dimen name="control_btn_md">56dp</dimen>
+    <dimen name="control_btn_lg">72dp</dimen>
+    <dimen name="album_artwork_size">320dp</dimen>
+    <dimen name="avatar_sm">40dp</dimen>
+    <dimen name="avatar_md">64dp</dimen>
+    <dimen name="avatar_lg">120dp</dimen>
+
+    <dimen name="stroke_glass">1dp</dimen>
+    <dimen name="stroke_neon">2dp</dimen>
+</resources>

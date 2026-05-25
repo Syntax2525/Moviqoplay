@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetStart="@+id/player_scene_start"
+        motion:constraintSetEnd="@+id/player_scene_end"
+        motion:duration="300" />
+
+    <ConstraintSet android:id="@id/player_scene_start" />
+
+    <ConstraintSet android:id="@id/player_scene_end" />
+</MotionScene>

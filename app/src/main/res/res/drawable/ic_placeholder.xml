@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generic placeholder drawable. Replace android:src references with actual vector icons
+     from Android Studio (Material Icons) such as ic_play_arrow, ic_pause, ic_skip_next, etc. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/glass_overlay" />
+    <corners android:radius="@dimen/radius_md" />
+</shape>

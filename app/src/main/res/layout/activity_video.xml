@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    activity_video.xml — Movoqoplay Video Player (Fullscreen cinematic)
+    Playback overlay · brightness/volume gesture areas · subtitle selector
+    · recommended videos drawer
+-->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_amoled"
+    android:keepScreenOn="true">
+
+    <!-- ============ VIDEO SURFACE ============ -->
+    <FrameLayout
+        android:id="@+id/video_surface_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/black_amoled"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Replace with SurfaceView / PlayerView (ExoPlayer) -->
+        <SurfaceView
+            android:id="@+id/video_surface"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+
+    <!-- ============ GESTURE AREAS (invisible, left=brightness / right=volume) ============ -->
+    <View
+        android:id="@+id/gesture_brightness"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="Brightness gesture area"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/gesture_volume" />
+
+    <View
+        android:id="@+id/gesture_volume"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="Volume gesture area"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/gesture_brightness"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.5" />
+
+    <!-- ============ TOP OVERLAY (gradient scrim) ============ -->
+    <LinearLayout
+        android:id="@+id/overlay_top"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@color/glass_black_60"
+        android:padding="@dimen/space_md"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageButton
+            android:id="@+id/btn_video_back"
+            android:layout_width="@dimen/control_btn_sm"
+            android:layout_height="@dimen/control_btn_sm"
+            android:background="@drawable/bg_circle_glass"
+            android:src="@drawable/ic_placeholder"
+            android:contentDescription="Back" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/space_sm"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txt_video_title"
+                style="@style/Text.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cyber Genesis — Trailer"
+                android:maxLines="1"
+                android:ellipsize="end" />
+
+            <TextView
+                android:id="@+id/txt_video_meta"
+                style="@style/Text.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4K HDR · Dolby Atmos" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btn_video_cast"
+            android:layout_width="@dimen/control_btn_sm"
+            android:layout_height="@dimen/control_btn_sm"
+            android:layout_marginStart="@dimen/space_xs"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_placeholder"
+            android:contentDescription="Cast" />
+
+        <ImageButton
+            android:id="@+id/btn_video_pip"
+            android:layout_width="@dimen/control_btn_sm"
+            android:layout_height="@dimen/control_btn_sm"
+            android:layout_marginStart="@dimen/space_xs"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_placeholder"
+            android:contentDescription="Picture in picture" />
+    </LinearLayout>
+
+    <!-- ============ CENTER PLAYBACK CONTROLS ============ -->
+    <LinearLayout
+        android:id="@+id/overlay_center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageButton
+            android:id="@+id/btn_video_rewind"
+            android:layout_width="@dimen/control_btn_md"
+            android:layout_height="@dimen/control_btn_md"
+            android:layout_marginEnd="@dimen/space_xl"
+            android:background="@drawable/bg_circle_glass"
+            android:src="@drawable/ic_placeholder"
+            android:contentDescription="Rewind 10s" />
+
+        <ImageButton
+            android:id="@+id/btn_video_play"
+            android:layout_width="@dimen/control_btn_lg"
+            android:layout_height="@dimen/control_btn_lg"
+            android:background="@drawable/bg_circle_neon"
+            android:src="@drawable/ic_placeholder"
+            android:contentDescription="Play" />
+
+        <ImageButton
+            android:id="@+id/btn_video_forward"
+            android:layout_width="@dimen/control_btn_md"
+            android:layout_height="@dimen/control_btn_md"
+            android:layout_marginStart="@dimen/space_xl"
+            android:background="@drawable/bg_circle_glass"
+            android:src="@drawable/ic_placeholder"
+            android:contentDescription="Forward 10s" />
+    </LinearLayout>
+
+    <!-- ============ BOTTOM OVERLAY (progress + subtitle/recommended) ============ -->
+    <LinearLayout
+        android:id="@+id/overlay_bottom"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/glass_black_60"
+        android:paddingHorizontal="@dimen/space_md"
+        android:paddingTop="@dimen/space_sm"
+        android:paddingBottom="@dimen/space_md"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Progress -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/txt_video_time"
+                style="@style/Text.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_primary"
+                android:text="00:42" />
+
+            <com.google.android.material.slider.Slider
+                android:id="@+id/seek_video"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="@dimen/space_xs"
+                android:valueFrom="0"
+                android:valueTo="100"
+                android:value="22"
+                app:thumbColor="@color/neon_blue"
+                app:trackColorActive="@color/neon_blue"
+                app:trackColorInactive="@color/glass_stroke" />
+
+            <TextView
+                android:id="@+id/txt_video_duration"
+                style="@style/Text.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_primary"
+                android:text="03:18" />
+        </LinearLayout>
+
+        <!-- Action row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_xs"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_subtitles"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/subtitles"
+                app:icon="@drawable/ic_placeholder"
+                android:textColor="@color/text_primary" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_audio_track"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Audio"
+                app:icon="@drawable/ic_placeholder"
+                android:textColor="@color/text_primary" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_quality"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4K"
+                android:textColor="@color/neon_blue" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:id="@+id/btn_video_lock"
+                android:layout_width="@dimen/control_btn_sm"
+                android:layout_height="@dimen/control_btn_sm"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_placeholder"
+                android:contentDescription="Lock" />
+
+            <ImageButton
+                android:id="@+id/btn_video_fullscreen"
+                android:layout_width="@dimen/control_btn_sm"
+                android:layout_height="@dimen/control_btn_sm"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_placeholder"
+                android:contentDescription="Fullscreen" />
+        </LinearLayout>
+
+        <!-- Recommended videos rail -->
+        <TextView
+            style="@style/Text.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_sm"
+            android:text="@string/recommended_videos"
+            android:textColor="@color/neon_blue"
+            android:letterSpacing="0.2" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_recommended_videos"
+            android:layout_width="match_parent"
+            android:layout_height="96dp"
+            android:layout_marginTop="@dimen/space_xs"
+            android:orientation="horizontal"
+            android:clipToPadding="false"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    activity_recommendation.xml — Smart Recommendation Screen
+    AI-generated picks · mood-based · adaptive cards · dynamic sections
+-->
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient_main"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/space_xxl">
+
+        <!-- Hero AI banner -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_ai_hero"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/space_lg"
+            app:cardCornerRadius="@dimen/radius_xl"
+            app:cardElevation="@dimen/elev_high"
+            app:strokeColor="@color/neon_blue"
+            app:strokeWidth="@dimen/stroke_neon"
+            app:cardBackgroundColor="@android:color/transparent">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@drawable/bg_neon_gradient">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="@dimen/space_lg">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/bg_search_glass"
+                        android:paddingHorizontal="@dimen/space_sm"
+                        android:paddingVertical="@dimen/space_xxs">
+
+                        <ImageView android:layout_width="14dp" android:layout_height="14dp" android:src="@drawable/ic_placeholder" android:contentDescription="AI" />
+                        <TextView style="@style/Text.Caption" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="@dimen/space_xxs" android:text="AI POWERED" android:textColor="@color/black_amoled" android:letterSpacing="0.2" android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <TextView
+                        style="@style/Text.Headline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_sm"
+                        android:text="Tonight's Frequency"
+                        android:textColor="@color/black_amoled" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_xxs"
+                        android:textColor="@color/black_amoled"
+                        android:textSize="@dimen/text_body"
+                        android:text="A 42-track journey tailored to your evening focus" />
+
+                    <Space android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_play_ai_mix"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Play Mix"
+                        android:textColor="@color/neon_blue"
+                        app:icon="@drawable/ic_placeholder"
+                        app:iconTint="@color/neon_blue"
+                        app:backgroundTint="@color/black_amoled"
+                        app:cornerRadius="@dimen/radius_pill" />
+                </LinearLayout>
+            </FrameLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Mood selector -->
+        <TextView style="@style/Text.Title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="@dimen/space_lg" android:text="@string/mood_based" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_sm"
+            android:paddingHorizontal="@dimen/space_lg"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <include layout="@layout/view_mood_card" />
+                <include layout="@layout/view_mood_card" />
+                <include layout="@layout/view_mood_card" />
+                <include layout="@layout/view_mood_card" />
+                <include layout="@layout/view_mood_card" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <!-- Adaptive cards section -->
+        <TextView style="@style/Text.Title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="@dimen/space_lg" android:layout_marginTop="@dimen/space_lg" android:text="Because you played Aurora Synth" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_adaptive_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_sm"
+            android:paddingHorizontal="@dimen/space_lg"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        <TextView style="@style/Text.Title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="@dimen/space_lg" android:layout_marginTop="@dimen/space_lg" android:text="Discover this week" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_adaptive_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_sm"
+            android:paddingHorizontal="@dimen/space_lg"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        <TextView style="@style/Text.Title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="@dimen/space_lg" android:layout_marginTop="@dimen/space_lg" android:text="Sleep · Wind down" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_adaptive_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_sm"
+            android:paddingHorizontal="@dimen/space_lg"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

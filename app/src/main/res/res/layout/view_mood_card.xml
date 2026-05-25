@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- view_mood_card.xml — single mood card chip -->
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="120dp"
+    android:layout_height="120dp"
+    android:layout_marginEnd="@dimen/space_sm"
+    app:cardCornerRadius="@dimen/radius_lg"
+    app:cardBackgroundColor="@color/glass_overlay"
+    app:strokeColor="@color/electric_purple"
+    app:strokeWidth="1dp"
+    app:cardElevation="@dimen/elev_md">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="@dimen/space_sm">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_placeholder"
+            android:contentDescription="Mood" />
+
+        <TextView
+            style="@style/Text.Body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_xs"
+            android:text="Focus"
+            android:textColor="@color/text_primary"
+            android:textStyle="bold" />
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

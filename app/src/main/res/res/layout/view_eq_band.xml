@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- view_eq_band.xml — single equalizer band column (label + vertical slider + Hz) -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="0dp"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+
+    <TextView
+        style="@style/Text.Caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+6"
+        android:textColor="@color/neon_blue" />
+
+    <!-- Vertical slider via rotation -->
+    <com.google.android.material.slider.Slider
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:rotation="270"
+        android:valueFrom="-12"
+        android:valueTo="12"
+        android:value="0"
+        app:thumbColor="@color/neon_blue"
+        app:trackColorActive="@color/neon_blue"
+        app:trackColorInactive="@color/glass_stroke"
+        app:haloColor="@color/electric_purple" />
+
+    <TextView
+        style="@style/Text.Caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="60" />
+</LinearLayout>

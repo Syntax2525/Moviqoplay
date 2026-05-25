@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    activity_settings.xml — Settings
+    Account · Theme · Playback · Download quality · Notifications
+-->
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient_main"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/space_lg"
+        android:paddingTop="@dimen/space_xl"
+        android:paddingBottom="@dimen/space_xxl">
+
+        <TextView
+            style="@style/Text.Display"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings" />
+
+        <!-- Account -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_lg"
+            app:cardCornerRadius="@dimen/radius_lg"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:strokeWidth="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_glass_panel"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="@dimen/space_md">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/img_settings_avatar"
+                    android:layout_width="@dimen/avatar_md"
+                    android:layout_height="@dimen/avatar_md"
+                    android:src="@drawable/ic_placeholder"
+                    android:background="@drawable/bg_circle_neon"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="@dimen/space_sm"
+                    android:orientation="vertical">
+
+                    <TextView style="@style/Text.Title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Alex Rivera" />
+                    <TextView style="@style/Text.Caption" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="alex@movoqoplay.com" />
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_manage_account"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Manage"
+                    android:textColor="@color/neon_blue"
+                    app:strokeColor="@color/neon_blue"
+                    app:cornerRadius="@dimen/radius_pill" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Theme -->
+        <TextView style="@style/Text.Title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/space_lg" android:text="@string/theme" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_sm"
+            android:orientation="vertical"
+            android:background="@drawable/bg_glass_panel"
+            android:padding="@dimen/space_md">
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
+                <TextView style="@style/Text.Body" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:textColor="@color/text_primary" android:text="AMOLED Dark" />
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/switch_amoled"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    app:thumbTint="@color/neon_blue" />
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/space_sm" android:orientation="horizontal" android:gravity="center_vertical">
+                <TextView style="@style/Text.Body" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:textColor="@color/text_primary" android:text="Glassmorphism effects" />
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/switch_glass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true" />
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/space_sm" android:orientation="horizontal" android:gravity="center_vertical">
+                <TextView style="@style/Text.Body" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:textColor="@color/text_primary" android:text="Accent color" />
+                <View android:layout_width="24dp" android:layout_height="24dp" android:background="@drawable/bg_circle_neon" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Playback -->
+        <TextView style="@style/Text.Title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/space_lg" android:text="@string/playback" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_sm"
+            android:orientation="vertical"
+            android:background="@drawable/bg_glass_panel"
+            android:padding="@dimen/space_md">
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
+                <TextView style="@style/Text.Body" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:textColor="@color/text_primary" android:text="Gapless playback" />
+                <com.google.android.material.materialswitch.MaterialSwitch android:id="@+id/switch_gapless" android:layout_width="wrap_content" android:layout_height="wrap_content" android:checked="true" />
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/space_sm" android:orientation="horizontal" android:gravity="center_vertical">
+                <TextView style="@style/Text.Body" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:textColor="@color/text_primary" android:text="Crossfade (sec)" />
+                <com.google.android.material.slider.Slider android:id="@+id/seek_crossfade" android:layout_width="160dp" android:layout_height="wrap_content" android:valueFrom="0" android:valueTo="12" android:value="4" app:thumbColor="@color/neon_blue" app:trackColorActive="@color/neon_blue" app:trackColorInactive="@color/glass_stroke" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Download quality -->
+        <TextView style="@style/Text.Title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/space_lg" android:text="@string/download_quality" />
+
+        <RadioGroup
+            android:id="@+id/group_download_quality"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_sm"
+            android:orientation="vertical"
+            android:background="@drawable/bg_glass_panel"
+            android:padding="@dimen/space_md">
+
+            <RadioButton android:id="@+id/quality_normal" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Normal (128 kbps)" android:textColor="@color/text_primary" android:buttonTint="@color/neon_blue" />
+            <RadioButton android:id="@+id/quality_high" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="High (256 kbps)" android:textColor="@color/text_primary" android:buttonTint="@color/neon_blue" android:checked="true" />
+            <RadioButton android:id="@+id/quality_lossless" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Lossless (FLAC)" android:textColor="@color/text_primary" android:buttonTint="@color/neon_blue" />
+            <RadioButton android:id="@+id/quality_hires" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Hi-Res 24-bit · Premium" android:textColor="@color/text_primary" android:buttonTint="@color/premium_gold" />
+        </RadioGroup>
+
+        <!-- Notifications -->
+        <TextView style="@style/Text.Title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/space_lg" android:text="@string/notifications" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_sm"
+            android:orientation="vertical"
+            android:background="@drawable/bg_glass_panel"
+            android:padding="@dimen/space_md">
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
+                <TextView style="@style/Text.Body" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:textColor="@color/text_primary" android:text="New releases" />
+                <com.google.android.material.materialswitch.MaterialSwitch android:id="@+id/switch_releases" android:layout_width="wrap_content" android:layout_height="wrap_content" android:checked="true" />
+            </LinearLayout>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/space_sm" android:orientation="horizontal" android:gravity="center_vertical">
+                <TextView style="@style/Text.Body" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:textColor="@color/text_primary" android:text="Concert nearby alerts" />
+                <com.google.android.material.materialswitch.MaterialSwitch android:id="@+id/switch_concerts" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/space_sm" android:orientation="horizontal" android:gravity="center_vertical">
+                <TextView style="@style/Text.Body" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:textColor="@color/text_primary" android:text="Collaborative playlist updates" />
+                <com.google.android.material.materialswitch.MaterialSwitch android:id="@+id/switch_collab_updates" android:layout_width="wrap_content" android:layout_height="wrap_content" android:checked="true" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
