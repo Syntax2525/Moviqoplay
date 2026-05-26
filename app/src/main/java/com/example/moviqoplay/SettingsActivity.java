@@ -17,7 +17,7 @@ public class SettingsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_settings);
-        applySystemBars();
+        applyTopInset(R.id.settings_scroll);
 
         MaterialSwitch gapless = findViewById(R.id.switch_gapless);
         Slider crossfade = findViewById(R.id.seek_crossfade);

@@ -91,6 +91,7 @@ public class PlayerActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_player);
+        applyTopInset(R.id.player_scroll);
 
         ImageButton collapse = findViewById(R.id.btn_collapse);
         playPause = findViewById(R.id.btn_play_pause);
@@ -106,9 +107,9 @@ public class PlayerActivity extends BaseActivity {
         totalTime = findViewById(R.id.txt_time_total);
         artwork = findViewById(R.id.img_artwork);
 
-        artwork.setImageResource(R.drawable.sample_album);
-        title.setText(R.string.sample_track_title);
-        artist.setText(R.string.sample_track_artist);
+        artwork.setImageResource(R.drawable.ic_placeholder);
+        title.setText(R.string.nothing_playing);
+        artist.setText(R.string.loading_local_media);
         setupArtworkAnimation();
 
         collapse.setOnClickListener(view -> finish());
@@ -215,3 +216,5 @@ public class PlayerActivity extends BaseActivity {
         }
     }
 }
+
+

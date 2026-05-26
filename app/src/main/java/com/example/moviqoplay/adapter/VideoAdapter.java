@@ -26,9 +26,15 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
 
     private final List<VideoItem> videos = new ArrayList<>();
     private final OnVideoClickListener listener;
+    private final boolean isCardView;
 
     public VideoAdapter(OnVideoClickListener listener) {
+        this(listener, false);
+    }
+
+    public VideoAdapter(OnVideoClickListener listener, boolean isCardView) {
         this.listener = listener;
+        this.isCardView = isCardView;
         setHasStableIds(true);
     }
 
@@ -48,7 +54,8 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
     @NonNull
     @Override
     public VideoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.video_item, parent, false);
+        int layoutId = isCardView ? R.layout.item_video_card : R.layout.video_item;
+        View view = LayoutInflater.from(parent.getContext()).inflate(layoutId, parent, false);
         return new VideoViewHolder(view);
     }
 

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_glass_card"
+    android:padding="@dimen/space_sm">
+    <ImageView android:id="@+id/iconMusic" android:layout_width="@dimen/dashboard_icon_size" android:layout_height="@dimen/dashboard_icon_size" android:background="@drawable/bg_dashboard_icon" android:padding="@dimen/space_sm" android:src="@drawable/ic_music" app:tint="@color/electric_purple" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+    <View android:layout_width="44dp" android:layout_height="4dp" android:background="@drawable/bg_neon_gradient" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="@id/iconMusic" />
+    <TextView android:id="@+id/titleMusic" style="@style/Text.Body" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginTop="@dimen/space_sm" android:maxLines="1" android:ellipsize="end" android:text="@string/dash_music_title" android:textColor="@color/text_primary" android:textStyle="bold" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@id/iconMusic" />
+    <TextView style="@style/Text.Caption" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginTop="3dp" android:maxLines="2" android:ellipsize="end" android:text="@string/dash_music_subtitle" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@id/titleMusic" />
+</androidx.constraintlayout.widget.ConstraintLayout>

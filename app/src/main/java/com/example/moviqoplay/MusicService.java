@@ -49,6 +49,7 @@ public class MusicService extends Service implements MediaPlayer.OnCompletionLis
     public static final String EXTRA_DURATION = "extra_duration";
     public static final String EXTRA_PLAYING = "extra_playing";
     public static final String EXTRA_SONG_ID = "extra_song_id";
+    public static final String EXTRA_HAS_SESSION = "extra_has_session";
 
     private static final String CHANNEL_ID = "movoqoplay_music";
     private static final int NOTIFICATION_ID = 4001;
@@ -103,6 +104,8 @@ public class MusicService extends Service implements MediaPlayer.OnCompletionLis
             seekTo(intent.getIntExtra(EXTRA_POSITION, 0));
         } else if (ACTION_STOP.equals(action)) {
             releasePlayer();
+            currentIndex = -1;
+            publishState();
             stopForeground(STOP_FOREGROUND_REMOVE);
             stopSelf();
         }
@@ -177,6 +180,11 @@ public class MusicService extends Service implements MediaPlayer.OnCompletionLis
             return null;
         }
         return queue.get(currentIndex);
+    }
+
+    /** True when a track is loaded in the player (playing or paused). */
+    public boolean hasActiveSession() {
+        return mediaPlayer != null && getCurrentSong() != null;
     }
 
     @Override
@@ -359,6 +367,7 @@ public class MusicService extends Service implements MediaPlayer.OnCompletionLis
         Intent state = new Intent(ACTION_STATE);
         state.setPackage(getPackageName());
         state.putExtra(EXTRA_PLAYING, isPlaying());
+        state.putExtra(EXTRA_HAS_SESSION, hasActiveSession());
         state.putExtra(EXTRA_POSITION, getCurrentPosition());
         state.putExtra(EXTRA_DURATION, getDuration());
         if (song != null) {

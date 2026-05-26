@@ -9,7 +9,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_gradient_main"
-    android:fitsSystemWindows="true">
+    android:id="@+id/equalizer_scroll"
+    android:paddingBottom="@dimen/content_bottom_safe"
+    android:scrollbars="none">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -107,12 +109,12 @@
                 app:singleSelection="true"
                 app:chipSpacingHorizontal="@dimen/space_xs">
 
-                <com.google.android.material.chip.Chip android:id="@+id/preset_flat" style="@style/Widget.Material3.Chip.Filter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Flat" android:checked="true" />
-                <com.google.android.material.chip.Chip android:id="@+id/preset_bass" style="@style/Widget.Material3.Chip.Filter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Bass Boost" />
-                <com.google.android.material.chip.Chip android:id="@+id/preset_vocal" style="@style/Widget.Material3.Chip.Filter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Vocal" />
-                <com.google.android.material.chip.Chip android:id="@+id/preset_electronic" style="@style/Widget.Material3.Chip.Filter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Electronic" />
-                <com.google.android.material.chip.Chip android:id="@+id/preset_rock" style="@style/Widget.Material3.Chip.Filter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Rock" />
-                <com.google.android.material.chip.Chip android:id="@+id/preset_cinematic" style="@style/Widget.Material3.Chip.Filter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Cinematic" />
+                <com.google.android.material.chip.Chip android:id="@+id/preset_flat" style="@style/Widget.Movoqoplay.Chip.Filter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Flat" android:checked="true" />
+                <com.google.android.material.chip.Chip android:id="@+id/preset_bass" style="@style/Widget.Movoqoplay.Chip.Filter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Bass Boost" />
+                <com.google.android.material.chip.Chip android:id="@+id/preset_vocal" style="@style/Widget.Movoqoplay.Chip.Filter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Vocal" />
+                <com.google.android.material.chip.Chip android:id="@+id/preset_electronic" style="@style/Widget.Movoqoplay.Chip.Filter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Electronic" />
+                <com.google.android.material.chip.Chip android:id="@+id/preset_rock" style="@style/Widget.Movoqoplay.Chip.Filter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Rock" />
+                <com.google.android.material.chip.Chip android:id="@+id/preset_cinematic" style="@style/Widget.Movoqoplay.Chip.Filter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Cinematic" />
             </com.google.android.material.chip.ChipGroup>
         </HorizontalScrollView>
 

@@ -6,78 +6,133 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_gradient_main"
-    android:padding="@dimen/space_lg"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/txtMainTitle"
-        style="@style/Text.Display"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/dashboardScroll"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/main_title"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:paddingBottom="@dimen/content_bottom_safe"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/txtMainSubtitle"
-        style="@style/Text.Body"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_xs"
-        android:text="@string/main_subtitle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtMainTitle" />
-
-    <LinearLayout
-        android:id="@+id/mainActions"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_xl"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtMainSubtitle">
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnOpenHome"
-            style="@style/NeonButton"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/open_home" />
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/space_lg"
+            android:paddingTop="@dimen/space_xl"
+            android:paddingBottom="@dimen/space_xxl">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnOpenPlayer"
-            style="@style/NeonButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_sm"
-            android:text="@string/open_player" />
+            <TextView
+                android:id="@+id/txtMainTitle"
+                style="@style/Text.Display"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnOpenVideo"
-            style="@style/NeonButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_sm"
-            android:text="@string/open_video" />
+            <TextView
+                android:id="@+id/txtMainSubtitle"
+                style="@style/Text.Body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_xs"
+                android:text="@string/main_subtitle" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnOpenPlaylist"
-            style="@style/NeonButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_sm"
-            android:text="@string/open_playlist" />
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardHero"
+                android:layout_width="match_parent"
+                android:layout_height="136dp"
+                android:layout_marginTop="@dimen/space_lg"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="@dimen/radius_xl"
+                app:cardElevation="@dimen/elev_md"
+                app:strokeColor="@color/neon_blue"
+                app:strokeWidth="@dimen/stroke_glass">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnOpenEqualizer"
-            style="@style/NeonButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_sm"
-            android:text="@string/open_equalizer" />
-    </LinearLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_glass_card"
+                    android:padding="@dimen/space_md">
 
+                    <TextView
+                        android:id="@+id/txtHeroTitle"
+                        style="@style/Text.Headline"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/main_dashboard_title"
+                        app:layout_constraintEnd_toStartOf="@id/imgHeroOrb"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/txtHeroSubtitle"
+                        style="@style/Text.Caption"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_xs"
+                        android:maxLines="2"
+                        android:text="@string/main_dashboard_subtitle"
+                        app:layout_constraintEnd_toStartOf="@id/imgHeroOrb"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txtHeroTitle" />
+
+                    <View
+                        android:id="@+id/heroAccent"
+                        android:layout_width="96dp"
+                        android:layout_height="5dp"
+                        android:layout_marginTop="@dimen/space_md"
+                        android:background="@drawable/bg_neon_gradient"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txtHeroSubtitle" />
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/imgHeroOrb"
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
+                        android:background="@drawable/moviqoplay"
+                        android:padding="18dp"
+                        android:src="@drawable/ic_recommendation"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
+                        app:tint="@color/black_elevated" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                style="@style/Text.Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_lg"
+                android:text="@string/main_dashboard_menu" />
+
+            <GridLayout
+                android:id="@+id/dashboardGrid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_sm"
+                android:alignmentMode="alignMargins"
+                android:columnCount="2"
+                android:useDefaultMargins="false">
+
+                <include layout="@layout/view_dashboard_home" />
+                <include layout="@layout/view_dashboard_music" />
+                <include layout="@layout/view_dashboard_video" />
+                <include layout="@layout/view_dashboard_playlist" />
+                <include layout="@layout/view_dashboard_search" />
+                <include layout="@layout/view_dashboard_equalizer" />
+                <include layout="@layout/view_dashboard_settings" />
+                <include layout="@layout/view_dashboard_profile" />
+                <include layout="@layout/view_dashboard_recommendation" />
+            </GridLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

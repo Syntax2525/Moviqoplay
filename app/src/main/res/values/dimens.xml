@@ -37,11 +37,22 @@
     <dimen name="control_btn_sm">44dp</dimen>
     <dimen name="control_btn_md">56dp</dimen>
     <dimen name="control_btn_lg">72dp</dimen>
-    <dimen name="album_artwork_size">320dp</dimen>
+    <dimen name="album_artwork_size">250dp</dimen>
     <dimen name="avatar_sm">40dp</dimen>
     <dimen name="avatar_md">64dp</dimen>
     <dimen name="avatar_lg">120dp</dimen>
+    <dimen name="dashboard_card_height">154dp</dimen>
+    <dimen name="dashboard_card_gap">6dp</dimen>
+    <dimen name="dashboard_icon_size">48dp</dimen>
 
     <dimen name="stroke_glass">1dp</dimen>
     <dimen name="stroke_neon">2dp</dimen>
+
+    <!-- Home bottom bar (nav only, or nav + mini player) -->
+    <dimen name="home_scroll_bottom_nav_only">88dp</dimen>
+    <dimen name="home_mini_player_gap">6dp</dimen>
+    <dimen name="home_scroll_bottom_with_mini">158dp</dimen>
+    <dimen name="mini_player_bottom_margin">0dp</dimen>
+    <dimen name="list_bottom_padding_fab">96dp</dimen>
+    <dimen name="content_bottom_safe">24dp</dimen>
 </resources>

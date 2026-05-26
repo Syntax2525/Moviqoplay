@@ -9,7 +9,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_gradient_main"
-    android:fitsSystemWindows="true">
+    android:id="@+id/recommendation_scroll"
+    android:paddingBottom="@dimen/content_bottom_safe"
+    android:scrollbars="none">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -50,7 +52,7 @@
                         android:paddingVertical="@dimen/space_xxs">
 
                         <ImageView android:layout_width="14dp" android:layout_height="14dp" android:src="@drawable/ic_placeholder" android:contentDescription="AI" />
-                        <TextView style="@style/Text.Caption" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="@dimen/space_xxs" android:text="AI POWERED" android:textColor="@color/black_amoled" android:letterSpacing="0.2" android:textStyle="bold" />
+                        <TextView style="@style/Text.Caption" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="@dimen/space_xxs" android:text="AI POWERED" android:textColor="@color/text_on_gradient" android:letterSpacing="0.2" android:textStyle="bold" />
                     </LinearLayout>
 
                     <TextView
@@ -59,13 +61,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/space_sm"
                         android:text="Tonight's Frequency"
-                        android:textColor="@color/black_amoled" />
+                        android:textColor="@color/text_on_gradient" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/space_xxs"
-                        android:textColor="@color/black_amoled"
+                        android:textColor="@color/text_on_gradient"
                         android:textSize="@dimen/text_body"
                         android:text="A 42-track journey tailored to your evening focus" />
 
@@ -77,9 +79,9 @@
                         android:layout_height="wrap_content"
                         android:text="Play Mix"
                         android:textColor="@color/neon_blue"
-                        app:icon="@drawable/ic_placeholder"
+                        app:icon="@drawable/play_solid_full"
                         app:iconTint="@color/neon_blue"
-                        app:backgroundTint="@color/black_amoled"
+                        app:backgroundTint="@color/black_elevated"
                         app:cornerRadius="@dimen/radius_pill" />
                 </LinearLayout>
             </FrameLayout>

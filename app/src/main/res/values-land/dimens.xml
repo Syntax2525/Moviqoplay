@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="album_artwork_size">200dp</dimen>
+    <dimen name="dashboard_card_height">132dp</dimen>
+    <dimen name="home_scroll_bottom_nav_only">80dp</dimen>
+    <dimen name="home_scroll_bottom_with_mini">148dp</dimen>
+</resources>

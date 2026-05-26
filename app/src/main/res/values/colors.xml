@@ -28,6 +28,8 @@
     <color name="glass_black_80">#F2FFFFFF</color>
     <color name="theme_choice_idle">#BFFFFFFF</color>
     <color name="theme_choice_selected">#DDEEFFFA</color>
+    <color name="dashboard_icon_surface">#E8F2FF</color>
+    <color name="dashboard_card_overlay">#CCFFFFFF</color>
 
     <!-- Status -->
     <color name="success_green">#087F5B</color>
@@ -39,4 +41,19 @@
     <color name="gradient_start">#FDFEFF</color>
     <color name="gradient_mid">#EFF6FF</color>
     <color name="gradient_end">#F7F4FF</color>
+
+    <!-- High-contrast text on accent / gradient surfaces -->
+    <color name="text_on_accent">#FFFFFF</color>
+    <color name="text_on_gradient">#0B1220</color>
+    <color name="icon_on_accent">#FFFFFF</color>
+
+    <!-- Mini player -->
+    <color name="mini_player_surface_start">#F8FAFD</color>
+    <color name="mini_player_surface_end">#EEF3FA</color>
+
+    <!-- Video player overlay (always dark regardless of theme) -->
+    <color name="video_overlay_white">#FFFFFFFF</color>
+    <color name="video_overlay_white_60">#99FFFFFF</color>
+    <color name="video_overlay_white_20">#33FFFFFF</color>
+    <color name="video_surface_elevated">#CC1A1A2E</color>
 </resources>

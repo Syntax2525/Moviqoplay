@@ -1,301 +1,320 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-    activity_player.xml — Movoqoplay Music Player
-    Large artwork · animated progress · futuristic controls · lyrics · queue
-    · Glassmorphism control panel
--->
-<androidx.constraintlayout.motion.widget.MotionLayout
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/player_root"
+    android:id="@+id/player_scroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_gradient_main"
-    android:fitsSystemWindows="true"
-    app:layoutDescription="@xml/scene_player"
-    tools:ignore="MissingConstraints">
+    android:clipToPadding="false"
+    android:fillViewport="true"
+    android:overScrollMode="never"
+    android:paddingBottom="@dimen/content_bottom_safe"
+    android:scrollbars="none">
 
-    <!-- ============ TOP BAR ============ -->
-    <ImageButton
-        android:id="@+id/btn_collapse"
-        android:layout_width="@dimen/control_btn_sm"
-        android:layout_height="@dimen/control_btn_sm"
-        android:layout_marginStart="@dimen/space_md"
-        android:layout_marginTop="@dimen/space_xl"
-        android:background="@drawable/bg_circle_glass"
-        android:src="@drawable/ic_placeholder"
-        android:contentDescription="Collapse"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/txt_now_playing"
-        style="@style/Text.Caption"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/player_root"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/now_playing"
-        android:textColor="@color/text_secondary"
-        android:letterSpacing="0.2"
-        app:layout_constraintTop_toTopOf="@id/btn_collapse"
-        app:layout_constraintBottom_toBottomOf="@id/btn_collapse"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:paddingBottom="@dimen/space_lg">
 
-    <ImageButton
-        android:id="@+id/btn_more"
-        android:layout_width="@dimen/control_btn_sm"
-        android:layout_height="@dimen/control_btn_sm"
-        android:layout_marginEnd="@dimen/space_md"
-        android:background="@drawable/bg_circle_glass"
-        android:src="@drawable/ic_placeholder"
-        android:contentDescription="More"
-        app:layout_constraintTop_toTopOf="@id/btn_collapse"
-        app:layout_constraintBottom_toBottomOf="@id/btn_collapse"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <ImageButton
+            android:id="@+id/btn_collapse"
+            android:layout_width="@dimen/control_btn_sm"
+            android:layout_height="@dimen/control_btn_sm"
+            android:layout_marginStart="@dimen/space_md"
+            android:layout_marginTop="@dimen/space_md"
+            android:background="@drawable/bg_circle_glass"
+            android:contentDescription="@string/open_home"
+            android:padding="@dimen/space_xs"
+            android:src="@drawable/ic_home"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/text_primary" />
 
-    <!-- ============ LARGE ALBUM ARTWORK (with neon glow) ============ -->
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card_artwork"
-        android:layout_width="@dimen/album_artwork_size"
-        android:layout_height="@dimen/album_artwork_size"
-        android:layout_marginTop="@dimen/space_xxl"
-        app:cardCornerRadius="@dimen/radius_xl"
-        app:cardElevation="24dp"
-        app:strokeColor="@color/neon_blue"
-        app:strokeWidth="@dimen/stroke_neon"
-        app:layout_constraintTop_toBottomOf="@id/btn_collapse"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <ImageView
-            android:id="@+id/img_artwork"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_placeholder"
-            android:contentDescription="Album artwork" />
-    </com.google.android.material.card.MaterialCardView>
-
-    <!-- ============ TRACK INFO ============ -->
-    <TextView
-        android:id="@+id/txt_track_title"
-        style="@style/Text.Headline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_lg"
-        android:text="Midnight Protocol"
-        android:maxLines="1"
-        android:ellipsize="end"
-        app:layout_constraintTop_toBottomOf="@id/card_artwork"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        android:id="@+id/txt_track_artist"
-        style="@style/Text.Body"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_xxs"
-        android:text="Aurora Synth · Neon Horizon"
-        app:layout_constraintTop_toBottomOf="@id/txt_track_title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <!-- ============ ANIMATED PROGRESS BAR ============ -->
-    <SeekBar
-        android:id="@+id/seek_progress"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/space_lg"
-        android:layout_marginTop="@dimen/space_lg"
-        android:max="1000"
-        android:progress="0"
-        android:progressTint="@color/neon_blue"
-        android:thumbTint="@color/neon_blue"
-        app:layout_constraintTop_toBottomOf="@id/txt_track_artist"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        android:id="@+id/txt_time_current"
-        style="@style/Text.Caption"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/space_lg"
-        android:text="1:42"
-        app:layout_constraintTop_toBottomOf="@id/seek_progress"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/txt_time_total"
-        style="@style/Text.Caption"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/space_lg"
-        android:text="4:28"
-        app:layout_constraintTop_toBottomOf="@id/seek_progress"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <!-- ============ GLASSMORPHISM CONTROL PANEL ============ -->
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/panel_controls"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/space_md"
-        android:layout_marginTop="@dimen/space_lg"
-        app:cardBackgroundColor="@android:color/transparent"
-        app:strokeWidth="0dp"
-        app:layout_constraintTop_toBottomOf="@id/txt_time_total"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/txt_now_playing"
+            style="@style/Text.Caption"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_glass_panel"
-            android:orientation="horizontal"
+            android:letterSpacing="0.2"
+            android:text="@string/now_playing"
+            android:textColor="@color/text_secondary"
+            app:layout_constraintBottom_toBottomOf="@id/btn_collapse"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btn_collapse" />
+
+        <ImageButton
+            android:id="@+id/btn_more"
+            android:layout_width="@dimen/control_btn_sm"
+            android:layout_height="@dimen/control_btn_sm"
+            android:layout_marginEnd="@dimen/space_md"
+            android:background="@drawable/bg_circle_glass"
+            android:contentDescription="@string/open_equalizer"
+            android:padding="@dimen/space_xs"
+            android:src="@drawable/ic_equalizer"
+            app:layout_constraintBottom_toBottomOf="@id/btn_collapse"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btn_collapse"
+            app:tint="@color/text_primary" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_artwork"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="@dimen/space_xl"
+            android:layout_marginTop="@dimen/space_md"
+            app:cardCornerRadius="@dimen/radius_xl"
+            app:cardElevation="@dimen/elev_high"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_collapse"
+            app:layout_constraintWidth_max="@dimen/album_artwork_size"
+            app:strokeColor="@color/neon_blue"
+            app:strokeWidth="@dimen/stroke_neon">
+
+            <ImageView
+                android:id="@+id/img_artwork"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/album_art"
+                android:scaleType="centerCrop"
+                android:src="@drawable/sample_album" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/txt_track_title"
+            style="@style/Text.Headline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/space_lg"
+            android:layout_marginTop="@dimen/space_md"
+            android:ellipsize="end"
             android:gravity="center"
-            android:padding="@dimen/space_md">
+            android:maxLines="2"
+            android:text="@string/nothing_playing"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_artwork" />
 
-            <ImageButton
-                android:id="@+id/btn_shuffle"
-                android:layout_width="@dimen/control_btn_sm"
-                android:layout_height="@dimen/control_btn_sm"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_placeholder"
-                android:contentDescription="Shuffle" />
-
-            <ImageButton
-                android:id="@+id/btn_previous"
-                android:layout_width="@dimen/control_btn_md"
-                android:layout_height="@dimen/control_btn_md"
-                android:layout_marginStart="@dimen/space_md"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_placeholder"
-                android:contentDescription="Previous" />
-
-            <!-- PRIMARY PLAY BUTTON with neon glow -->
-            <ImageButton
-                android:id="@+id/btn_play_pause"
-                android:layout_width="@dimen/control_btn_lg"
-                android:layout_height="@dimen/control_btn_lg"
-                android:layout_marginHorizontal="@dimen/space_md"
-                android:background="@drawable/bg_circle_neon"
-                android:src="@drawable/ic_placeholder"
-                android:elevation="@dimen/elev_high"
-                android:contentDescription="Play/Pause" />
-
-            <ImageButton
-                android:id="@+id/btn_next"
-                android:layout_width="@dimen/control_btn_md"
-                android:layout_height="@dimen/control_btn_md"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_placeholder"
-                android:contentDescription="Next" />
-
-            <ImageButton
-                android:id="@+id/btn_repeat"
-                android:layout_width="@dimen/control_btn_sm"
-                android:layout_height="@dimen/control_btn_sm"
-                android:layout_marginStart="@dimen/space_md"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_placeholder"
-                android:contentDescription="Repeat" />
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-    <!-- ============ SECONDARY ACTIONS (lyrics / queue / fav / share) ============ -->
-    <LinearLayout
-        android:id="@+id/row_secondary"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/space_xl"
-        android:layout_marginTop="@dimen/space_lg"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:weightSum="4"
-        app:layout_constraintTop_toBottomOf="@id/panel_controls"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <ImageButton
-            android:id="@+id/btn_favorite"
+        <TextView
+            android:id="@+id/txt_track_artist"
+            style="@style/Text.Body"
             android:layout_width="0dp"
-            android:layout_height="@dimen/control_btn_sm"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_placeholder"
-            android:contentDescription="Favorite" />
-
-        <ImageButton
-            android:id="@+id/btn_lyrics"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/control_btn_sm"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_placeholder"
-            android:contentDescription="@string/lyrics" />
-
-        <ImageButton
-            android:id="@+id/btn_queue"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/control_btn_sm"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_placeholder"
-            android:contentDescription="@string/queue" />
-
-        <ImageButton
-            android:id="@+id/btn_share"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/control_btn_sm"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_placeholder"
-            android:contentDescription="Share" />
-    </LinearLayout>
-
-    <!-- ============ LYRICS PREVIEW ============ -->
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card_lyrics"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/space_md"
-        android:layout_marginTop="@dimen/space_md"
-        android:layout_marginBottom="@dimen/space_md"
-        app:cardBackgroundColor="@android:color/transparent"
-        app:strokeWidth="0dp"
-        app:layout_constraintTop_toBottomOf="@id/row_secondary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_glass_panel"
-            android:orientation="vertical"
-            android:padding="@dimen/space_md">
+            android:layout_marginHorizontal="@dimen/space_lg"
+            android:layout_marginTop="@dimen/space_xxs"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="2"
+            android:text="@string/loading_local_media"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_track_title" />
 
-            <TextView
-                style="@style/Text.Caption"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/lyrics"
-                android:textColor="@color/neon_blue"
-                android:letterSpacing="0.15" />
+        <SeekBar
+            android:id="@+id/seek_progress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/space_lg"
+            android:layout_marginTop="@dimen/space_md"
+            android:max="1000"
+            android:progress="0"
+            android:progressTint="@color/neon_blue"
+            android:thumbTint="@color/neon_blue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_track_artist" />
 
-            <TextView
-                android:id="@+id/txt_lyrics_preview"
-                style="@style/Text.Body"
+        <TextView
+            android:id="@+id/txt_time_current"
+            style="@style/Text.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_lg"
+            android:text="0:00"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/seek_progress" />
+
+        <TextView
+            android:id="@+id/txt_time_total"
+            style="@style/Text.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/space_lg"
+            android:text="0:00"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/seek_progress" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/panel_controls"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/space_md"
+            android:layout_marginTop="@dimen/space_sm"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_time_current"
+            app:strokeWidth="0dp">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_xs"
-                android:textColor="@color/text_primary"
-                android:textSize="@dimen/text_body_lg"
-                android:text="Neon lights bleed through the rain\nWe're chasing skies that don't remain…" />
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
+                android:background="@drawable/bg_glass_panel"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="@dimen/space_md">
 
-</androidx.constraintlayout.motion.widget.MotionLayout>
+                <ImageButton
+                    android:id="@+id/btn_shuffle"
+                    android:layout_width="@dimen/control_btn_sm"
+                    android:layout_height="@dimen/control_btn_sm"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/queue"
+                    android:src="@drawable/shuffle"
+                    app:tint="@color/text_primary" />
+
+                <ImageButton
+                    android:id="@+id/btn_previous"
+                    android:layout_width="@dimen/control_btn_md"
+                    android:layout_height="@dimen/control_btn_md"
+                    android:layout_marginStart="@dimen/space_md"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/open_player"
+                    android:src="@drawable/previous"
+                    app:tint="@color/text_primary" />
+
+                <ImageButton
+                    android:id="@+id/btn_play_pause"
+                    android:layout_width="@dimen/control_btn_lg"
+                    android:layout_height="@dimen/control_btn_lg"
+                    android:layout_marginHorizontal="@dimen/space_md"
+                    android:background="@drawable/bg_circle_neon"
+                    android:contentDescription="@string/open_player"
+                    android:elevation="@dimen/elev_high"
+                    android:padding="@dimen/space_sm"
+                    android:src="@drawable/play"
+                    app:tint="@color/icon_on_accent" />
+
+                <ImageButton
+                    android:id="@+id/btn_next"
+                    android:layout_width="@dimen/control_btn_md"
+                    android:layout_height="@dimen/control_btn_md"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/queue"
+                    android:src="@drawable/next"
+                    app:tint="@color/text_primary" />
+
+                <ImageButton
+                    android:id="@+id/btn_repeat"
+                    android:layout_width="@dimen/control_btn_sm"
+                    android:layout_height="@dimen/control_btn_sm"
+                    android:layout_marginStart="@dimen/space_md"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/queue"
+                    android:src="@drawable/repeate"
+                    app:tint="@color/text_primary" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:id="@+id/row_secondary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/space_xl"
+            android:layout_marginTop="@dimen/space_sm"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/panel_controls">
+
+            <ImageButton
+                android:id="@+id/btn_favorite"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/control_btn_sm"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/queue"
+                android:src="@drawable/ic_music"
+                app:tint="@color/text_secondary" />
+
+            <ImageButton
+                android:id="@+id/btn_lyrics"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/control_btn_sm"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/lyrics"
+                android:src="@drawable/lyrics"
+                app:tint="@color/text_primary" />
+
+            <ImageButton
+                android:id="@+id/btn_queue"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/control_btn_sm"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/queue"
+                android:src="@drawable/ic_playlist"
+                app:tint="@color/text_primary" />
+
+            <ImageButton
+                android:id="@+id/btn_share"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/control_btn_sm"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/open_home"
+                android:src="@drawable/ic_recommendation"
+                app:tint="@color/text_secondary" />
+        </LinearLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_lyrics"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/space_md"
+            android:layout_marginTop="@dimen/space_md"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/row_secondary"
+            app:strokeWidth="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_glass_panel"
+                android:orientation="vertical"
+                android:padding="@dimen/space_md">
+
+                <TextView
+                    style="@style/Text.Caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:letterSpacing="0.15"
+                    android:text="@string/lyrics"
+                    android:textColor="@color/neon_blue" />
+
+                <TextView
+                    android:id="@+id/txt_lyrics_preview"
+                    style="@style/Text.Body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_xs"
+                    android:lineSpacingExtra="4dp"
+                    android:text="@string/main_dashboard_subtitle"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_body_lg" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
+

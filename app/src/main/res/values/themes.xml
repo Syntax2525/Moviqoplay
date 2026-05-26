@@ -78,7 +78,7 @@
     <style name="NeonButton" parent="Widget.Material3.Button">
         <item name="backgroundTint">@color/neon_blue</item>
         <item name="cornerRadius">@dimen/radius_pill</item>
-        <item name="android:textColor">@color/black_elevated</item>
+        <item name="android:textColor">@color/text_on_accent</item>
         <item name="android:textStyle">bold</item>
     </style>
 
@@ -87,5 +87,25 @@
         <item name="android:paddingEnd">@dimen/space_md</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="DashboardCard" parent="Widget.Material3.CardView.Elevated">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">@dimen/dashboard_card_height</item>
+        <item name="android:layout_margin">@dimen/dashboard_card_gap</item>
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="cardBackgroundColor">@android:color/transparent</item>
+        <item name="cardCornerRadius">@dimen/radius_xl</item>
+        <item name="cardElevation">@dimen/elev_md</item>
+        <item name="strokeColor">@color/glass_stroke</item>
+        <item name="strokeWidth">@dimen/stroke_glass</item>
+    </style>
+
+    <style name="DashboardCardWide" parent="DashboardCard">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_columnSpan">2</item>
     </style>
 </resources>

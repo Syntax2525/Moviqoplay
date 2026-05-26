@@ -28,6 +28,8 @@
     <color name="glass_black_80">#CC000000</color>
     <color name="theme_choice_idle">#141A2436</color>
     <color name="theme_choice_selected">#3322D3EE</color>
+    <color name="dashboard_icon_surface">#1F2638</color>
+    <color name="dashboard_card_overlay">#B3141A24</color>
 
     <!-- Status -->
     <color name="success_green">#10F2A6</color>
@@ -39,4 +41,13 @@
     <color name="gradient_start">#0F0C29</color>
     <color name="gradient_mid">#302B63</color>
     <color name="gradient_end">#24243E</color>
+
+    <!-- High-contrast text on accent / gradient surfaces -->
+    <color name="text_on_accent">#050505</color>
+    <color name="text_on_gradient">#FFFFFF</color>
+    <color name="icon_on_accent">#050505</color>
+
+    <!-- Mini player -->
+    <color name="mini_player_surface_start">#E6101018</color>
+    <color name="mini_player_surface_end">#E61A0B2E</color>
 </resources>

@@ -10,9 +10,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_gradient_main"
-    android:fitsSystemWindows="true">
+    android:id="@+id/playlist_root">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/playlist_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -53,7 +54,7 @@
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_all"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.Movoqoplay.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="All"
@@ -61,21 +62,21 @@
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_mine"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.Movoqoplay.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Created by me" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_collab"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.Movoqoplay.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/collaborative" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_downloaded"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.Movoqoplay.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Downloaded" />
@@ -88,7 +89,7 @@
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/space_md"
             android:paddingHorizontal="@dimen/space_md"
-            android:paddingBottom="120dp"
+            android:paddingBottom="@dimen/list_bottom_padding_fab"
             android:clipToPadding="false"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2"
@@ -107,9 +108,9 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/space_lg"
         android:text="@string/create_playlist"
-        android:textColor="@color/black_amoled"
-        app:icon="@drawable/ic_placeholder"
-        app:iconTint="@color/black_amoled"
+        android:textColor="@color/text_on_accent"
+        app:icon="@drawable/ic_playlist"
+        app:iconTint="@color/text_on_accent"
         app:backgroundTint="@color/neon_blue"
         app:elevation="@dimen/elev_high" />
 

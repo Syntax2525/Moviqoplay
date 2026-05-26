@@ -1,55 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black_amoled"
     android:keepScreenOn="true">
 
+    <!-- Full-screen video surface -->
     <androidx.media3.ui.PlayerView
         android:id="@+id/player_view"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="@color/black_amoled"
         app:resize_mode="fit"
         app:show_buffering="when_playing"
         app:surface_type="surface_view"
-        app:use_controller="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:use_controller="false" />
 
-    <View
-        android:id="@+id/gesture_brightness"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/gesture_volume"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <!-- Gesture zones (invisible touch interceptors) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-    <View
-        android:id="@+id/gesture_volume"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/gesture_brightness"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.5" />
+        <View
+            android:id="@+id/gesture_brightness"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
 
+        <View
+            android:id="@+id/gesture_volume"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <!-- TOP OVERLAY: back + title + speed/pip -->
     <LinearLayout
         android:id="@+id/overlay_top"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/glass_black_60"
+        android:layout_gravity="top"
+        android:background="@drawable/bg_gradient_top_controls"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="@dimen/space_md"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:paddingStart="@dimen/space_sm"
+        android:paddingEnd="@dimen/space_sm"
+        android:paddingTop="@dimen/space_md"
+        android:paddingBottom="@dimen/space_xl"
+        android:visibility="gone">
 
         <ImageButton
             android:id="@+id/btn_video_back"
@@ -57,7 +58,8 @@
             android:layout_height="@dimen/control_btn_sm"
             android:background="@drawable/bg_circle_glass"
             android:contentDescription="Back"
-            android:src="@drawable/ic_placeholder" />
+            android:src="@drawable/ic_placeholder"
+            android:tint="@color/video_overlay_white" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -73,7 +75,8 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="@string/sample_video_title" />
+                android:textColor="@color/video_overlay_white"
+                android:text="@string/no_local_videos" />
 
             <TextView
                 android:id="@+id/txt_video_meta"
@@ -82,6 +85,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="1"
+                android:textColor="@color/video_overlay_white_60"
                 android:text="@string/local_video_library" />
         </LinearLayout>
 
@@ -91,7 +95,8 @@
             android:layout_height="@dimen/control_btn_sm"
             android:background="@android:color/transparent"
             android:contentDescription="@string/playback_speed"
-            android:src="@drawable/ic_placeholder" />
+            android:src="@drawable/ic_placeholder"
+            android:tint="@color/video_overlay_white" />
 
         <ImageButton
             android:id="@+id/btn_video_pip"
@@ -99,19 +104,19 @@
             android:layout_height="@dimen/control_btn_sm"
             android:background="@android:color/transparent"
             android:contentDescription="Picture in picture"
-            android:src="@drawable/ic_placeholder" />
+            android:src="@drawable/ic_placeholder"
+            android:tint="@color/video_overlay_white" />
     </LinearLayout>
 
+    <!-- CENTER OVERLAY: playback controls -->
     <LinearLayout
         android:id="@+id/overlay_center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:visibility="gone">
 
         <ImageButton
             android:id="@+id/btn_video_previous"
@@ -120,7 +125,8 @@
             android:layout_marginEnd="@dimen/space_md"
             android:background="@drawable/bg_circle_glass"
             android:contentDescription="Previous"
-            android:src="@drawable/ic_placeholder" />
+            android:src="@drawable/ic_placeholder"
+            android:tint="@color/video_overlay_white" />
 
         <ImageButton
             android:id="@+id/btn_video_rewind"
@@ -129,7 +135,8 @@
             android:layout_marginEnd="@dimen/space_lg"
             android:background="@drawable/bg_circle_glass"
             android:contentDescription="Rewind 10 seconds"
-            android:src="@drawable/ic_placeholder" />
+            android:src="@drawable/ic_placeholder"
+            android:tint="@color/video_overlay_white" />
 
         <ImageButton
             android:id="@+id/btn_video_play"
@@ -137,7 +144,8 @@
             android:layout_height="@dimen/control_btn_lg"
             android:background="@drawable/bg_circle_neon"
             android:contentDescription="Play"
-            android:src="@drawable/ic_placeholder" />
+            android:src="@drawable/ic_placeholder"
+            android:tint="@color/video_overlay_white" />
 
         <ImageButton
             android:id="@+id/btn_video_forward"
@@ -146,7 +154,8 @@
             android:layout_marginStart="@dimen/space_lg"
             android:background="@drawable/bg_circle_glass"
             android:contentDescription="Forward 10 seconds"
-            android:src="@drawable/ic_placeholder" />
+            android:src="@drawable/ic_placeholder"
+            android:tint="@color/video_overlay_white" />
 
         <ImageButton
             android:id="@+id/btn_video_next"
@@ -155,21 +164,22 @@
             android:layout_marginStart="@dimen/space_md"
             android:background="@drawable/bg_circle_glass"
             android:contentDescription="Next"
-            android:src="@drawable/ic_placeholder" />
+            android:src="@drawable/ic_placeholder"
+            android:tint="@color/video_overlay_white" />
     </LinearLayout>
 
+    <!-- BOTTOM OVERLAY: seek bar + time + slim action row -->
     <LinearLayout
         android:id="@+id/overlay_bottom"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/glass_black_60"
+        android:layout_gravity="bottom"
+        android:background="@drawable/bg_gradient_bottom_controls"
         android:orientation="vertical"
         android:paddingHorizontal="@dimen/space_md"
-        android:paddingTop="@dimen/space_sm"
+        android:paddingTop="@dimen/space_xl"
         android:paddingBottom="@dimen/space_md"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -183,7 +193,7 @@
                 android:layout_width="48dp"
                 android:layout_height="wrap_content"
                 android:text="0:00"
-                android:textColor="@color/text_primary" />
+                android:textColor="@color/video_overlay_white" />
 
             <com.google.android.material.slider.Slider
                 android:id="@+id/seek_video"
@@ -195,7 +205,7 @@
                 android:valueTo="100"
                 app:thumbColor="@color/neon_blue"
                 app:trackColorActive="@color/neon_blue"
-                app:trackColorInactive="@color/glass_stroke" />
+                app:trackColorInactive="@color/video_overlay_white_20" />
 
             <TextView
                 android:id="@+id/txt_video_duration"
@@ -204,7 +214,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="end"
                 android:text="0:00"
-                android:textColor="@color/text_primary" />
+                android:textColor="@color/video_overlay_white" />
         </LinearLayout>
 
         <LinearLayout
@@ -219,7 +229,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/subtitles"
-                android:textColor="@color/text_primary" />
+                android:textColor="@color/video_overlay_white" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_sort_videos"
@@ -235,28 +245,62 @@
                 android:layout_weight="1" />
 
             <ImageButton
+                android:id="@+id/btn_video_list"
+                android:layout_width="@dimen/control_btn_sm"
+                android:layout_height="@dimen/control_btn_sm"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/local_video_library"
+                android:src="@drawable/ic_playlist"
+                android:tint="@color/video_overlay_white" />
+
+            <ImageButton
                 android:id="@+id/btn_video_fullscreen"
                 android:layout_width="@dimen/control_btn_sm"
                 android:layout_height="@dimen/control_btn_sm"
                 android:background="@android:color/transparent"
                 android:contentDescription="Fullscreen"
-                android:src="@drawable/ic_placeholder" />
+                android:src="@drawable/ic_placeholder"
+                android:tint="@color/video_overlay_white" />
         </LinearLayout>
+    </LinearLayout>
+
+    <!-- VIDEO LIST SHEET: slides up from bottom, hidden by default -->
+    <LinearLayout
+        android:id="@+id/video_list_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/video_surface_elevated"
+        android:elevation="8dp"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/space_sm"
+        android:paddingBottom="@dimen/space_md"
+        android:translationY="1000dp"
+        android:visibility="gone">
+
+        <View
+            android:layout_width="40dp"
+            android:layout_height="4dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/space_sm"
+            android:background="@color/text_tertiary" />
 
         <TextView
             style="@style/Text.Caption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_sm"
+            android:layout_marginStart="@dimen/space_md"
+            android:layout_marginTop="@dimen/space_xs"
             android:text="@string/recommended_videos"
             android:textColor="@color/neon_blue" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_recommended_videos"
             android:layout_width="match_parent"
-            android:layout_height="116dp"
+            android:layout_height="120dp"
             android:layout_marginTop="@dimen/space_xs"
             android:clipToPadding="false"
+            android:paddingHorizontal="@dimen/space_md"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
@@ -264,6 +308,7 @@
             style="@style/Text.Caption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_md"
             android:layout_marginTop="@dimen/space_sm"
             android:text="@string/local_video_library"
             android:textColor="@color/text_primary" />
@@ -271,10 +316,12 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_local_videos"
             android:layout_width="match_parent"
-            android:layout_height="190dp"
+            android:layout_height="200dp"
             android:layout_marginTop="@dimen/space_xs"
             android:clipToPadding="false"
+            android:paddingHorizontal="@dimen/space_md"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2" />
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

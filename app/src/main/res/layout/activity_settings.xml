@@ -9,7 +9,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_gradient_main"
-    android:fitsSystemWindows="true">
+    android:id="@+id/settings_scroll"
+    android:paddingBottom="@dimen/content_bottom_safe"
+    android:scrollbars="none">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -57,8 +59,15 @@
                     android:layout_marginStart="@dimen/space_sm"
                     android:orientation="vertical">
 
-                    <TextView style="@style/Text.Title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Alex Rivera" />
-                    <TextView style="@style/Text.Caption" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="alex@movoqoplay.com" />
+                    <TextView
+                        style="@style/Text.Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="syntax" />
+                    <TextView style="@style/Text.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="syntax@movoqoplay.com" />
                 </LinearLayout>
 
                 <com.google.android.material.button.MaterialButton

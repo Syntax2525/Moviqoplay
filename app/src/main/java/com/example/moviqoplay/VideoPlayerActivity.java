@@ -15,7 +15,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -71,13 +74,18 @@ public class VideoPlayerActivity extends BaseActivity {
     private View bottomOverlay;
     private AudioManager audioManager;
     private GestureDetector gestureDetector;
+    private LinearLayout videoListSheet;
+    private boolean videoListSheetVisible = false;
     private boolean userSeeking;
-    private boolean controlsVisible = true;
+    private boolean controlsVisible = false;
+    private static final long AUTO_HIDE_DELAY_MS = 3000;
     private int currentIndex;
     private String sortMode = MediaScannerHelper.SORT_RECENT;
 
     private final ActivityResultLauncher<String[]> permissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(), this::onPermissionResult);
+
+    private final Runnable autoHideRunnable = () -> setControlsVisible(false);
 
     private final Runnable progressRunnable = new Runnable() {
         @Override
@@ -136,6 +144,7 @@ public class VideoPlayerActivity extends BaseActivity {
     @Override
     protected void onStop() {
         progressHandler.removeCallbacks(progressRunnable);
+        progressHandler.removeCallbacks(autoHideRunnable);
         player.removeListener(playerListener);
         playbackManager.savePosition(currentVideo());
         super.onStop();
@@ -159,7 +168,12 @@ public class VideoPlayerActivity extends BaseActivity {
     @Override
     public void onPictureInPictureModeChanged(boolean isInPictureInPictureMode, @NonNull Configuration newConfig) {
         super.onPictureInPictureModeChanged(isInPictureInPictureMode, newConfig);
-        setControlsVisible(!isInPictureInPictureMode);
+        if (isInPictureInPictureMode) {
+            setControlsVisible(false);
+            if (videoListSheetVisible) {
+                toggleVideoListSheet();
+            }
+        }
     }
 
     private void bindViews() {
@@ -173,6 +187,7 @@ public class VideoPlayerActivity extends BaseActivity {
         topOverlay = findViewById(R.id.overlay_top);
         centerOverlay = findViewById(R.id.overlay_center);
         bottomOverlay = findViewById(R.id.overlay_bottom);
+        videoListSheet = findViewById(R.id.video_list_sheet);
 
         RecyclerView recommended = findViewById(R.id.rv_recommended_videos);
         RecyclerView local = findViewById(R.id.rv_local_videos);
@@ -191,6 +206,10 @@ public class VideoPlayerActivity extends BaseActivity {
         gestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
             @Override
             public boolean onSingleTapConfirmed(@NonNull MotionEvent e) {
+                if (videoListSheetVisible) {
+                    toggleVideoListSheet();
+                    return true;
+                }
                 setControlsVisible(!controlsVisible);
                 return true;
             }
@@ -238,14 +257,17 @@ public class VideoPlayerActivity extends BaseActivity {
             @Override
             public void onStartTrackingTouch(@NonNull Slider slider) {
                 userSeeking = true;
+                progressHandler.removeCallbacks(autoHideRunnable);
             }
 
             @Override
             public void onStopTrackingTouch(@NonNull Slider slider) {
                 userSeeking = false;
                 player.seekTo((long) slider.getValue());
+                scheduleAutoHide();
             }
         });
+        findViewById(R.id.btn_video_list).setOnClickListener(v -> toggleVideoListSheet());
     }
 
     @SuppressWarnings("deprecation")
@@ -447,10 +469,54 @@ public class VideoPlayerActivity extends BaseActivity {
 
     private void setControlsVisible(boolean visible) {
         controlsVisible = visible;
-        int visibility = visible ? View.VISIBLE : View.GONE;
-        topOverlay.setVisibility(visibility);
-        centerOverlay.setVisibility(visibility);
-        bottomOverlay.setVisibility(visibility);
+        progressHandler.removeCallbacks(autoHideRunnable);
+
+        float targetAlpha = visible ? 1f : 0f;
+        if (visible) {
+            topOverlay.setVisibility(View.VISIBLE);
+            centerOverlay.setVisibility(View.VISIBLE);
+            bottomOverlay.setVisibility(View.VISIBLE);
+        }
+        topOverlay.animate().alpha(targetAlpha).setDuration(200).setListener(visibilityListener(topOverlay, visible)).start();
+        centerOverlay.animate().alpha(targetAlpha).setDuration(200).setListener(visibilityListener(centerOverlay, visible)).start();
+        bottomOverlay.animate().alpha(targetAlpha).setDuration(200).setListener(visibilityListener(bottomOverlay, visible)).start();
+
+        if (visible) {
+            scheduleAutoHide();
+        }
+    }
+
+    private AnimatorListenerAdapter visibilityListener(View view, boolean visible) {
+        return new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                if (!visible) {
+                    view.setVisibility(View.GONE);
+                }
+            }
+        };
+    }
+
+    private void scheduleAutoHide() {
+        progressHandler.removeCallbacks(autoHideRunnable);
+        progressHandler.postDelayed(autoHideRunnable, AUTO_HIDE_DELAY_MS);
+    }
+
+    private void toggleVideoListSheet() {
+        if (videoListSheetVisible) {
+            videoListSheet.animate().translationY(videoListSheet.getHeight()).setDuration(300)
+                    .setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            videoListSheet.setVisibility(View.GONE);
+                        }
+                    }).start();
+        } else {
+            videoListSheet.setVisibility(View.VISIBLE);
+            videoListSheet.setTranslationY(videoListSheet.getHeight() > 0 ? videoListSheet.getHeight() : 1000);
+            videoListSheet.animate().translationY(0).setDuration(300).setListener(null).start();
+        }
+        videoListSheetVisible = !videoListSheetVisible;
     }
 
     private void hideSystemBars() {

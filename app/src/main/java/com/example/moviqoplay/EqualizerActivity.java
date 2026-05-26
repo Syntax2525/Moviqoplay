@@ -15,6 +15,7 @@ public class EqualizerActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_equalizer);
+        applyTopInset(R.id.equalizer_scroll);
 
         MaterialSwitch enabled = findViewById(R.id.switch_eq_enabled);
         Slider bass = findViewById(R.id.seek_bass);

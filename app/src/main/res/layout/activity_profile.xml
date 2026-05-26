@@ -9,7 +9,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_gradient_main"
-    android:fitsSystemWindows="true">
+    android:id="@+id/profile_scroll"
+    android:paddingBottom="@dimen/content_bottom_safe"
+    android:scrollbars="none">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -173,10 +175,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
-            <com.google.android.material.chip.Chip style="@style/Widget.Material3.Chip.Assist" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Synthwave" android:textColor="@color/text_primary" app:chipBackgroundColor="@color/glass_overlay" app:chipStrokeColor="@color/neon_blue" app:chipStrokeWidth="1dp" />
-            <com.google.android.material.chip.Chip style="@style/Widget.Material3.Chip.Assist" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Lo-Fi" android:textColor="@color/text_primary" app:chipBackgroundColor="@color/glass_overlay" app:chipStrokeColor="@color/electric_purple" app:chipStrokeWidth="1dp" />
-            <com.google.android.material.chip.Chip style="@style/Widget.Material3.Chip.Assist" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Electronic" android:textColor="@color/text_primary" app:chipBackgroundColor="@color/glass_overlay" app:chipStrokeColor="@color/cyan_accent" app:chipStrokeWidth="1dp" />
-            <com.google.android.material.chip.Chip style="@style/Widget.Material3.Chip.Assist" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Indie" android:textColor="@color/text_primary" app:chipBackgroundColor="@color/glass_overlay" app:chipStrokeColor="@color/magenta_glow" app:chipStrokeWidth="1dp" />
+            <com.google.android.material.chip.Chip style="@style/Widget.Movoqoplay.Chip.Assist" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Synthwave" android:textColor="@color/text_primary" app:chipBackgroundColor="@color/glass_overlay" app:chipStrokeColor="@color/neon_blue" app:chipStrokeWidth="1dp" />
+            <com.google.android.material.chip.Chip style="@style/Widget.Movoqoplay.Chip.Assist" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Lo-Fi" android:textColor="@color/text_primary" app:chipBackgroundColor="@color/glass_overlay" app:chipStrokeColor="@color/electric_purple" app:chipStrokeWidth="1dp" />
+            <com.google.android.material.chip.Chip style="@style/Widget.Movoqoplay.Chip.Assist" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Electronic" android:textColor="@color/text_primary" app:chipBackgroundColor="@color/glass_overlay" app:chipStrokeColor="@color/cyan_accent" app:chipStrokeWidth="1dp" />
+            <com.google.android.material.chip.Chip style="@style/Widget.Movoqoplay.Chip.Assist" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Indie" android:textColor="@color/text_primary" app:chipBackgroundColor="@color/glass_overlay" app:chipStrokeColor="@color/magenta_glow" app:chipStrokeWidth="1dp" />
         </com.google.android.material.chip.ChipGroup>
 
         <!-- Achievements -->

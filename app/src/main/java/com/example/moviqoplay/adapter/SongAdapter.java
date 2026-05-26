@@ -1,6 +1,5 @@
 package com.example.moviqoplay.adapter;
 
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.moviqoplay.R;
 import com.example.moviqoplay.model.Song;
 import com.example.moviqoplay.util.MediaUtils;
@@ -24,10 +24,16 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder
 
     private final List<Song> songs = new ArrayList<>();
     private final OnSongClickListener listener;
+    private final boolean isCardView;
     private long playingSongId = RecyclerView.NO_ID;
 
     public SongAdapter(OnSongClickListener listener) {
+        this(listener, false);
+    }
+
+    public SongAdapter(OnSongClickListener listener, boolean isCardView) {
         this.listener = listener;
+        this.isCardView = isCardView;
         setHasStableIds(true);
     }
 
@@ -40,8 +46,17 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder
     }
 
     public void setPlayingSongId(long songId) {
+        if (playingSongId == songId) {
+            return;
+        }
+        long previousId = playingSongId;
         playingSongId = songId;
-        notifyDataSetChanged();
+        for (int i = 0; i < songs.size(); i++) {
+            long id = songs.get(i).getId();
+            if (id == previousId || id == songId) {
+                notifyItemChanged(i);
+            }
+        }
     }
 
     @Override
@@ -52,7 +67,8 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder
     @NonNull
     @Override
     public SongViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.song_item, parent, false);
+        int layoutId = isCardView ? R.layout.item_music_card : R.layout.song_item;
+        View view = LayoutInflater.from(parent.getContext()).inflate(layoutId, parent, false);
         return new SongViewHolder(view);
     }
 
@@ -64,7 +80,12 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder
         holder.duration.setText(MediaUtils.formatDuration(song.getDuration()));
         holder.playingIndicator.setVisibility(song.getId() == playingSongId ? View.VISIBLE : View.INVISIBLE);
         if (song.getAlbumArtUri() != null) {
-            holder.albumArt.setImageURI(Uri.parse(song.getAlbumArtUri()));
+            Glide.with(holder.albumArt)
+                    .load(song.getAlbumArtUri())
+                    .centerCrop()
+                    .placeholder(R.drawable.sample_album)
+                    .error(R.drawable.sample_album)
+                    .into(holder.albumArt);
         } else {
             holder.albumArt.setImageResource(R.drawable.sample_album);
         }
